@@ -75,10 +75,10 @@ func main() {
 
 	go Routine()
 
-	log.Printf("Geth Exporter running on http://localhost:9090/metrics\n")
+	log.Printf("Geth Exporter running on http://localhost:%v/metrics\n", os.Getenv("PORT"))
 
 	http.HandleFunc("/metrics", MetricsHttp)
-	err = http.ListenAndServe(":9090", nil)
+	err = http.ListenAndServe(":" + os.Getenv("PORT"), nil)
 	if err != nil {
 		panic(err)
 	}
