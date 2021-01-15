@@ -11,8 +11,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         GOOS: [linux]
-        GOARCH: [amd64, arm, arm64]
-        GOARM: [7]
+        GOARCH: [amd64, arm64]
     runs-on: ${{ matrix.operating-system }}
     steps:
       - uses: actions/checkout@v2
