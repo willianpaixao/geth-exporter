@@ -11,7 +11,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         GOOS: [linux]
-        GOARCH: [amd64, arm] 
+        GOARCH: [amd64, arm, arm64]
         GOARM: [7]
     runs-on: ${{ matrix.operating-system }}
     steps:
@@ -19,9 +19,9 @@ jobs:
       - uses: actions/setup-go@v2
       - name: Download dependencies
         run: GOOS=${{ matrix.GOOS }} GOARCH=${{ matrix.GOARCH }} go get -t -d ./...
-      - name: Build source code for amd64
+      - name: Build source code for all architectures
         run: GOOS=${{ matrix.GOOS }} GOARCH=${{ matrix.GOARCH }} go build
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v2
         with:
           name: geth-exporter-1.0.0-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
           path: gethexporter
