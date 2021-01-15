@@ -20,7 +20,7 @@ jobs:
         run: GOOS=${{ matrix.GOOS }} GOARCH=${{ matrix.GOARCH }} go get -t -d ./...
       - name: Build source code for all architectures
         run: GOOS=${{ matrix.GOOS }} GOARCH=${{ matrix.GOARCH }} go build
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v1
         with:
           name: geth-exporter-1.0.0-${{ matrix.GOOS }}-${{ matrix.GOARCH }}
           path: gethexporter
